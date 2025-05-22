@@ -26,9 +26,9 @@ export default function RootLayout({
       </head>
 
       <body className={`${bricolageGrotesque.variable} antialiased`}>
-        <header className='flex justify-center items-center p-4 sticky top-0 bg-white z-10'>
+        <header className='flex justify-center items-center sticky top-0 bg-white z-10'>
           <Link href='/'>
-            <h1 className='text-2xl font-bold'>Avalon Blog</h1>
+            <h1 className='font-bold'>Avalon Blog</h1>
           </Link>
         </header>
         {children}
