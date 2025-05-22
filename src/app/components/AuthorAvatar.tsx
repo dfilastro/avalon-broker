@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { AuthorAvatarProps } from '@/lib/types';
 
-export const AuthorAvatar = ({ user, post, large }: { user: any; post: any; large?: boolean }) => {
+export const AuthorAvatar = ({ user, post, large }: AuthorAvatarProps) => {
   const Title = large ? 'h1' : 'h3';
   const Email = large ? 'h3' : 'p';
 
@@ -19,7 +20,7 @@ export const AuthorAvatar = ({ user, post, large }: { user: any; post: any; larg
           fill
           objectFit='cover'
           src={`https://avatar.iran.liara.run/public/${user.id}`}
-          alt={post.title || user.name}
+          alt={Array.isArray(post) ? user.name : post.title}
         />
       </div>
       <div className='flex flex-col text-left'>

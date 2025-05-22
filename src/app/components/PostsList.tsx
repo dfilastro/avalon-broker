@@ -3,16 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { calculateReadingTime } from '@/lib/utils';
-
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
-
-interface PostsListProps {
-  initialPosts: Post[];
-}
+import { Post, PostsListProps } from '@/lib/types';
 
 export default function PostsList({ initialPosts }: PostsListProps) {
   const [posts, setPosts] = useState<Post[]>(initialPosts.slice(0, 8));
@@ -96,13 +87,14 @@ export default function PostsList({ initialPosts }: PostsListProps) {
               <Link
                 key={`post-${post.id}`}
                 href={`/post/${post.id}`}
-                className='w-full capitalize flex flex-col justify-between hover:bg-[#1CC68E] border-[1px] border-[#1CC68E] border-solid hover:text-white rounded-2xl p-4 h-auto min-h-48 sm:min-h-64 hover:scale-105 transition-all duration-300 cursor-pointer'
+                tabIndex={0}
+                className='w-full capitalize flex flex-col justify-between hover:bg-[#1CC68E] border-[1px] border-[#1CC68E] border-solid hover:text-white rounded-2xl p-4 h-auto min-h-48 sm:min-h-64 hover:scale-105 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1CC68E] focus:ring-offset-2'
               >
-                <div className='flex flex-col gap-2'>
-                  <h3 className=''>{post.title}</h3>
-                  <p>{post.body.slice(0, 50)}</p>
+                <div className='text-ellipsis overflow-hidden flex flex-col gap-3'>
+                  <h3 className='text-ellipsis overflow-hidden line-clamp-2'>{post.title}</h3>
+                  <p className='opacity-80'>{post.body.slice(0, 50)}</p>
                 </div>
-                <p className='text-sm'>{readingTime} min read</p>
+                <p className='text-sm opacity-70'>{readingTime} min read</p>
               </Link>
             );
           })}
