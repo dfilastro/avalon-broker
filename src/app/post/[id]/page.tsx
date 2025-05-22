@@ -32,8 +32,8 @@ export default async function PostPage(props: { params: Params }): Promise<JSX.E
     : null;
 
   return (
-    <section className='flex flex-col gap-6 items-center text-center bg-gray-100 min-h-screen w-full p-10'>
-      <div className='flex flex-col gap-2 p-10 border-[1px] border-gray-200 bg-white rounded-2xl w-full'>
+    <section className='flex flex-col gap-6 items-center text-center bg-gray-100 min-h-screen w-full p-2 sm:p-10'>
+      <div className='flex flex-col gap-2 p-4 sm:p-10 border-[1px] border-gray-200 bg-white rounded-2xl w-full'>
         <p className='text-sm text-gray-500'>{calculateReadingTime(post.body)} min read</p>
         <h1 className='text-2xl font-bold capitalize'>{post.title}</h1>
         <h3 className='text-gray-700'>{post.body}</h3>

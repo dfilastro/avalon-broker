@@ -11,7 +11,7 @@ export default async function HomePage() {
   const posts = await getPosts();
 
   return (
-    <main className='flex flex-col gap-6 bg-gray-100 min-h-screen w-full p-10 items-start'>
+    <main className='flex flex-col gap-6 bg-gray-100 min-h-screen w-full p-2 sm:p-10 items-start'>
       <PostsList initialPosts={posts} />
     </main>
   );

@@ -50,15 +50,15 @@ export default function PostsList({ initialPosts }: PostsListProps) {
   }, [page, initialPosts]);
 
   return (
-    <div className='flex flex-col items-center'>
-      <div className='flex flex-wrap w-full gap-6 justify-center'>
+    <div className='flex flex-col'>
+      <div className='flex flex-col sm:flex-row flex-wrap gap-6 justify-center'>
         {posts.map((post) => {
           const readingTime = calculateReadingTime(post.body);
           return (
             <Link
               key={`post-${post.id}`}
               href={`/post/${post.id}`}
-              className='w-1/5 capitalize flex flex-col justify-between hover:bg-[#1CC68E] border-[1px] border-[#1CC68E] border-solid hover:text-white rounded-2xl p-4 h-auto min-h-64 hover:scale-105 transition-all duration-300 cursor-pointer'
+              className='w-full sm:w-1/5 capitalize flex flex-col justify-between hover:bg-[#1CC68E] border-[1px] border-[#1CC68E] border-solid hover:text-white rounded-2xl p-4 h-auto min-h-48 sm:min-h-64 hover:scale-105 transition-all duration-300 cursor-pointer'
             >
               <div className='flex flex-col gap-2'>
                 <h3 className=''>{post.title}</h3>

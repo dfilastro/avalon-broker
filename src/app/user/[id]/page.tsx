@@ -24,7 +24,7 @@ export default async function UserPage(props: { params: Params }) {
   ]);
 
   return (
-    <div className='flex flex-col gap-6 bg-gray-100 min-h-screen w-full p-10 items-start'>
+    <div className='flex flex-col gap-6 bg-gray-100 min-h-screen w-full p-2 sm:p-10 items-start'>
       <AuthorAvatar user={user} post={posts} large />
 
       <PostsList initialPosts={posts} />

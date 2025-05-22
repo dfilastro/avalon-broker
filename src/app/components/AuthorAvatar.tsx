@@ -11,7 +11,9 @@ export const AuthorAvatar = ({ user, post, large }: { user: any; post: any; larg
       className='flex gap-4 items-center justify-center cursor-pointer hover:scale-[1.01] transition-all duration-300'
     >
       <div
-        className={`relative ${large ? 'h-36' : 'h-20'} aspect-square rounded-full overflow-hidden`}
+        className={`relative ${
+          large ? 'h-24 sm:h-36' : 'h-12 sm:h-20'
+        } aspect-square rounded-full overflow-hidden`}
       >
         <Image
           fill
