@@ -22,6 +22,72 @@ A modern blog application built with Next.js 15, TypeScript, and Tailwind CSS. T
 - **API**: JSONPlaceholder (for demo data)
 - **Images**: Avatar API integration
 
+## Technical Decisions
+
+### Server-Side Rendering (SSR) and Static Site Generation (SSG)
+
+1. **Hybrid Rendering Approach**
+
+   - Used SSG for static content (posts, user profiles) with `generateStaticParams`
+   - Implemented revalidation every hour (`revalidate: 3600`) to keep content fresh
+   - Benefits:
+     - Fast initial page load
+     - Better SEO
+     - Reduced server load
+     - Improved user experience
+
+2. **Project Structure**
+
+   ```
+   src/
+   ├── app/                    # Next.js 15 App Router
+   │   ├── components/        # Reusable components
+   │   ├── post/             # Post-related pages
+   │   ├── user/             # User-related pages
+   │   ├── globals.css       # Global styles
+   │   └── layout.tsx        # Root layout
+   ├── lib/
+   │   ├── types.ts          # TypeScript interfaces
+   │   └── utils.ts          # Utility functions
+   ```
+
+   Benefits:
+
+   - Clear separation of concerns
+   - Easy to maintain and scale
+   - Type safety with centralized types
+   - Reusable components and utilities
+
+3. **TypeScript Implementation**
+
+   - Centralized types in `lib/types.ts`
+   - Strict type checking enabled
+   - Benefits:
+     - Better code quality
+     - Improved developer experience
+     - Easier refactoring
+     - Better documentation
+
+4. **Error Handling**
+
+   - Implemented error handling using Next.js `error.tsx` at the app level
+   - Added error checks in API requests to throw appropriate errors
+   - Benefits:
+     - Graceful error recovery
+     - Better user experience during errors
+     - Clear error messages for debugging
+     - Improved error tracking
+
+5. **Accessibility Features**
+   - Keyboard navigation support
+   - ARIA labels
+   - Focus management
+   - Semantic HTML
+   - Benefits:
+     - Better user experience
+     - Compliance with accessibility standards
+     - Improved SEO
+
 ## Getting Started
 
 ### Prerequisites
@@ -56,21 +122,6 @@ yarn dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Project Structure
-
-```
-src/
-├── app/
-│   ├── components/     # Reusable components
-│   ├── post/          # Post-related pages
-│   ├── user/          # User-related pages
-│   ├── globals.css    # Global styles
-│   └── layout.tsx     # Root layout
-├── lib/
-│   ├── types.ts       # TypeScript interfaces
-│   └── utils.ts       # Utility functions
-```
-
 ## Key Features Implementation
 
 ### Infinite Scroll
@@ -87,6 +138,13 @@ Real-time search that filters posts based on title and content, with keyboard na
 - ARIA labels
 - Focus management
 - Semantic HTML structure
+
+### Performance Optimizations
+
+- Image optimization with Next.js Image component
+- Font optimization with next/font
+- Proper caching strategies
+- Efficient data fetching
 
 ## Contributing
 
