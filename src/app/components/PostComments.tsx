@@ -2,6 +2,10 @@ import { Comment } from '@/lib/types';
 import Image from 'next/image';
 
 export default async function PostComments({ postId }: { postId: number }) {
+  // This server component inherits the revalidate time from the parent page, which is 1 hour
+  // We could set this as a client component and use useSWR to fetch the comments and trigger
+  // a revalidation when the user adds a new comment, this way we would have always up to date comments
+  // as the add comment feature is not going to be implemented in this project, we will use this server component for now
   const comments: Comment[] = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${postId}/comments`
   ).then((res) => res.json());

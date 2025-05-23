@@ -1,5 +1,6 @@
 import { AuthorAvatar } from '@/app/components/AuthorAvatar';
 import PostComments from '@/app/components/PostComments';
+import { Params } from '@/lib/types';
 import { calculateReadingTime } from '@/lib/utils';
 import { JSX } from 'react';
 
@@ -13,9 +14,7 @@ export async function generateStaticParams() {
   }));
 }
 
-type Params = Promise<{ id: string }>;
-
-export default async function PostPage(props: { params: Params }): Promise<JSX.Element> {
+export default async function PostPage(props: { params: Promise<Params> }): Promise<JSX.Element> {
   const params = await props.params;
 
   const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`).then((res) =>

@@ -1,19 +1,18 @@
 import { AuthorAvatar } from '@/app/components/AuthorAvatar';
 import PostsList from '@/app/components/PostsList';
+import { Params } from '@/lib/types';
 
 export const revalidate = 3600; // 1 hour
 
 export async function generateStaticParams() {
   const users = await fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json());
 
-  return users.map((user: any) => ({
+  return users.map((user: { id: number }) => ({
     id: user.id.toString(),
   }));
 }
 
-type Params = Promise<{ id: string }>;
-
-export default async function UserPage(props: { params: Params }) {
+export default async function UserPage(props: { params: Promise<Params> }) {
   const params = await props.params;
 
   const [user, posts] = await Promise.all([

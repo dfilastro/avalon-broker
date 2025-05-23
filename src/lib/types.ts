@@ -29,3 +29,7 @@ export interface AuthorAvatarProps {
   post: Post | Post[];
   large?: boolean;
 }
+
+export interface Params {
+  id: string;
+}
