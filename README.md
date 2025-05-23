@@ -40,8 +40,8 @@ A modern blog application built with Next.js 15, TypeScript, and Tailwind CSS. T
 
    ```
    src/
-   ├── app/                    # Next.js 15 App Router
-   │   ├── components/        # Reusable components
+   ├── app/                  # Next.js 15 App Router
+   │   ├── components/       # Reusable components
    │   ├── post/             # Post-related pages
    │   ├── user/             # User-related pages
    │   ├── globals.css       # Global styles
@@ -100,16 +100,16 @@ A modern blog application built with Next.js 15, TypeScript, and Tailwind CSS. T
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/avalon-blog.git
+git clone https://github.com/dfilastro/avalon-broker.git
 cd avalon-blog
 ```
 
 2. Install dependencies:
 
 ```bash
-npm install
+npm i
 # or
-yarn install
+yarn
 ```
 
 3. Run the development server:
