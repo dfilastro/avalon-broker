@@ -22,6 +22,9 @@ export default async function UserPage(props: { params: Promise<Params> }) {
     ),
   ]);
 
+  if (!user) throw new Error('User not found');
+  if (!posts) throw new Error('Posts not found');
+
   return (
     <div className='flex flex-col gap-6 bg-gray-100 min-h-screen w-full p-2 sm:p-10 items-start'>
       <AuthorAvatar user={user} post={posts} large />

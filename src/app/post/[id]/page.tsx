@@ -21,11 +21,15 @@ export default async function PostPage(props: { params: Promise<Params> }): Prom
     res.json()
   );
 
+  if (!post) throw new Error('Post not found');
+
   const user = post?.userId
     ? await fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`).then((res) =>
         res.json()
       )
     : null;
+
+  if (!user) throw new Error('User not found');
 
   return (
     <section className='flex flex-col gap-6 items-center text-center bg-gray-100 min-h-screen w-full p-2 sm:p-10'>
