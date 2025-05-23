@@ -1,6 +1,6 @@
 import { AuthorAvatar } from '@/app/components/AuthorAvatar';
+import PostComments from '@/app/components/PostComments';
 import { calculateReadingTime } from '@/lib/utils';
-import Image from 'next/image';
 import { JSX } from 'react';
 
 export const revalidate = 3600; // 1 hour
@@ -18,12 +18,9 @@ type Params = Promise<{ id: string }>;
 export default async function PostPage(props: { params: Params }): Promise<JSX.Element> {
   const params = await props.params;
 
-  const [post, comments] = await Promise.all([
-    fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`).then((res) => res.json()),
-    fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}/comments`).then((res) =>
-      res.json()
-    ),
-  ]);
+  const post = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`).then((res) =>
+    res.json()
+  );
 
   const user = post?.userId
     ? await fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`).then((res) =>
@@ -41,36 +38,7 @@ export default async function PostPage(props: { params: Params }): Promise<JSX.E
 
       <AuthorAvatar user={user} post={post} />
 
-      <div className='flex flex-col gap-2 w-full'>
-        <p className='font-bold uppercase text-left'>Comments</p>
-        {comments.map((comment: { id: number; body: string; email: string; name: string }) => {
-          const commentId = (comment.id % 100) + 1;
-
-          return (
-            <div
-              key={comment.id}
-              className='flex flex-col gap-4 p-5 text-left rounded-lg bg-white border-[1px] border-gray-200 hover:scale-[1.005] transition-all duration-300'
-            >
-              <div className='flex flex-col gap-2 items-start'>
-                <h3 className='capitalize'>{comment.name}</h3>
-                <p className='capitalize'>{comment.body}</p>
-              </div>
-
-              <div className='flex gap-2'>
-                <div className='relative h-6 aspect-square rounded-full overflow-hidden'>
-                  <Image
-                    fill
-                    objectFit='cover'
-                    src={`https://avatar.iran.liara.run/public/${commentId}`}
-                    alt={comment.email}
-                  />
-                </div>
-                <p className='lowercase'>{comment.email}</p>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <PostComments postId={post.id} />
     </section>
   );
 }
